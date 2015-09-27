@@ -1,6 +1,6 @@
-# threads.io nodejs api
+# threads.io nodejs api #
 
-## This project is an npm module that implements the Threads.io API
+## This project is an npm module that implements the Threads.io API ##
 install instructions:
 
 npm install threads.io
@@ -10,7 +10,8 @@ var threadsio = require('threads.io')('YOUR_THREADS.IO_API_KEY');
 
 Usage:
 
-###identify(params, callback)
+###identify(params, callback)###
+<pre><code>
 var params = {
 	userid: '1234567890', //required
 	traits: {
@@ -26,8 +27,62 @@ threadsio.identify(params, function (error, result) {
 		// Everything is not great...
 		console.log(error);
 	}
-})
+});
+</pre></code>
+###track(params, callback)###
+<pre><code>
+var params = {
+	userid: '1234567890', //required
+	traits: {
+		email: 'mrsmith@example.com',
+		fullname: 'Mister Smith'
+	}
+};
 
-###track(params, callback)
-###page(params, callback)
-###remove(params, callback)
+threadsio.identify(params, function (error, result) {
+	if (result === true) {
+		// Everything is great...
+	} else {
+		// Everything is not great...
+		console.log(error);
+	}
+});
+</pre></code>
+###page(params, callback)###
+<pre><code>
+var params = {
+	userid: '1234567890', //required
+	traits: {
+		email: 'mrsmith@example.com',
+		fullname: 'Mister Smith'
+	}
+};
+
+threadsio.identify(params, function (error, result) {
+	if (result === true) {
+		// Everything is great...
+	} else {
+		// Everything is not great...
+		console.log(error);
+	}
+});
+</pre></code>
+###remove(params, callback)###
+<pre><code>
+var params = {
+	userid: '1234567890', //required
+	traits: {
+		email: 'mrsmith@example.com',
+		fullname: 'Mister Smith'
+	}
+};
+
+threadsio.identify(params, function (error, result) {
+	if (result === true) {
+		// Everything is great...
+	} else {
+		// Everything is not great...
+		console.log(error);
+	}
+});
+</pre></code>

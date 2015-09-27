@@ -2,7 +2,7 @@
   "name": "threads.io",
   "version": "1.0.0",
   "description": "API Implementation for Threads.io",
-  "main": "index.js",
+  "main": "./lib/threadsio.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
