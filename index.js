@@ -1,4 +1,4 @@
-var ThreadsIo = function (apikey) {
+var ThreadsIo = function (apikey, options) {
     'use strict';
     var https = require('https'),
         util = require('util'),
@@ -8,39 +8,44 @@ var ThreadsIo = function (apikey) {
             path: '/v1/',
             method: 'POST',
             auth: apikey + ':' + ''
-        };
+        },
+        dontsend = options.dontsend;
 
     function sendRequest(apimethod, data, callback) {
-        var options = util._extend({}, baseoptions),
-            postdata = JSON.stringify(data),
-            request;
-        options.path += apimethod;
-        options.headers = {
-            'Content-Type': 'application/json',
-            'Content-Length': Buffer.byteLength(postdata)
-        };
-        request = https.request(options, function (response) {
-            response.setEncoding('utf8');
-            response.on('data', function (apiresult) {
-                if (response.statusCode === 200) {
-                    apiresult = JSON.parse(apiresult);
-                    if (apiresult.success === true) {
-                        callback(null, apiresult);
+        if (!dontsend) {
+            var options = util._extend({}, baseoptions),
+                postdata = JSON.stringify(data),
+                request;
+            options.path += apimethod;
+            options.headers = {
+                'Content-Type': 'application/json',
+                'Content-Length': Buffer.byteLength(postdata)
+            };
+            request = https.request(options, function (response) {
+                response.setEncoding('utf8');
+                response.on('data', function (apiresult) {
+                    if (response.statusCode === 200) {
+                        apiresult = JSON.parse(apiresult);
+                        if (apiresult.success === true) {
+                            callback(null, apiresult);
+                        } else {
+                            callback(apiresult);
+                        }
                     } else {
                         callback(apiresult);
                     }
-                } else {
-                    callback(apiresult);
-                }
+                });
             });
-        });
 
-        request.on('error', function (error) {
-            callback(error);
-        });
+            request.on('error', function (error) {
+                callback(error);
+            });
 
-        request.write(postdata);
-        request.end();
+            request.write(postdata);
+            request.end();
+        } else {
+            callback(null, true);
+        }
     }
 
     this.identify = function (params, callback) {
@@ -122,6 +127,9 @@ var ThreadsIo = function (apikey) {
     };
 };
 
-module.exports = function (apikey) {
-    return new ThreadsIo(apikey);
+module.exports = function (apikey, options) {
+    if (options === undefined) {
+        options = {};
+    }
+    return new ThreadsIo(apikey, options);
 };
