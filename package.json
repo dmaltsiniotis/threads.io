@@ -10,8 +10,13 @@
     "type": "git",
     "url": "git+https://github.com/dmaltsiniotis/threads.io.git"
   },
+  "keywords": [
+    "threads.io",
+    "sendgrid",
+    "labs"
+  ],
   "author": "Demetri Maltsiniotis <demetri@urbanleash.com> (http://www.urbanleash.com)",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/dmaltsiniotis/threads.io/issues"
   },
