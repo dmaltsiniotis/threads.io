@@ -1,7 +1,7 @@
 {
   "name": "threads.io",
   "version": "1.0.0",
-  "description": "API Implementation for Threads.io",
+  "description": "NodeJS API implementation for threads.io (SendGrid Labs)",
   "main": "./lib/threadsio.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
