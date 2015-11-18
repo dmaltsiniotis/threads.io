@@ -4,7 +4,7 @@
   "description": "NodeJS API implementation for threads.io (SendGrid Labs)",
   "main": "./lib/threadsio.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha test/test.js"
   },
   "repository": {
     "type": "git",
